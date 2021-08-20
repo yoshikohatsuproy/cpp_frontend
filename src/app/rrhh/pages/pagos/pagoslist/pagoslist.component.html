@@ -1,0 +1,54 @@
+<div class="tabla">
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+    <!-- Position Column -->
+    <ng-container matColumnDef="codigo">
+      <th mat-header-cell *matHeaderCellDef> Código </th>
+      <td mat-cell *matCellDef="let element"> {{element.cod_pago}} </td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="codigo_sunat">
+      <th mat-header-cell *matHeaderCellDef> Código Sunat </th>
+      <td mat-cell *matCellDef="let element"> {{element.codigo_sunat}} </td>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="descripcion">
+      <th mat-header-cell *matHeaderCellDef> Descripción </th>
+      <td mat-cell *matCellDef="let element"> {{element.des_pago}} </td>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="activo">
+      <th mat-header-cell *matHeaderCellDef> Activo </th>
+      <td  mat-cell *matCellDef="let element">    {{element.act_pago ? 'SI' : 'NO'}} </td>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="acciones">
+      <th mat-header-cell *matHeaderCellDef>   </th>
+      <td mat-cell *matCellDef="let element" style="text-align: right;">
+        <a class="pointer" style="color: #1878b0;" matTooltip="Ver Pago">
+          <mat-icon> search</mat-icon>
+        </a>
+        <span class="spacer"></span>
+        <a class="pointer" style="color: #1f516f;" matTooltip="Editar Pago">
+          <mat-icon> edit</mat-icon>
+        </a>
+        <span class="spacer"></span>
+        <a class="pointer" style="color: #e15639;" matTooltip="Eliminar Pago">
+          <mat-icon> delete</mat-icon>
+        </a>
+      </td>
+
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  <mat-paginator  [pageSizeOptions]="[5, 10, 20]"
+                  showFirstLastButtons
+                  aria-label="Select page of periodic elements">
+  </mat-paginator>
+</div>

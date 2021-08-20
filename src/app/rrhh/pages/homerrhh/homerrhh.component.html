@@ -1,0 +1,45 @@
+<mat-sidenav-container fullscreen>
+  <mat-sidenav #sidenav mode="push">
+    <mat-toolbar>
+      <span>Menú</span>
+
+    </mat-toolbar>
+    <mat-nav-list>
+      <a routerLink="/rrhh"
+        mat-list-item
+        (click) ="sidenav.toggle()">
+        <mat-icon mat-list-icon> label</mat-icon>
+        Dashboard
+      </a>
+      <a routerLink="/rrhh/pagos"
+        mat-list-item
+        (click) ="sidenav.toggle()">
+        <mat-icon mat-list-icon> label</mat-icon>
+        Pagos
+      </a>
+      <a routerLink="/rrhh/empleados"
+        mat-list-item
+        (click) ="sidenav.toggle()">
+        <mat-icon mat-list-icon> label</mat-icon>
+        Empleados
+      </a>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-toolbar>
+
+    <button mat-icon-button
+            (click) ="sidenav.toggle()">
+        <mat-icon>menu</mat-icon>
+    </button>
+    <span class="spacer"></span>
+    <button mat-button>
+        Logout
+    </button>
+  </mat-toolbar>
+
+  <div class="container" >
+    <!-- Aquí pones al hijo-->
+    <router-outlet></router-outlet>
+  </div>
+</mat-sidenav-container>
