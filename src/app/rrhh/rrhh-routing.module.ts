@@ -12,7 +12,8 @@ const routes : Routes = [
     children:[
       {path: 'pagos', loadChildren: () => import('./pages/pagos/pagos.module').then(m => m.PagosModule)},
       {path: 'empleados', loadChildren: () => import('./pages/empleados/empleados.module').then(m => m.EmpleadosModule)},
-      {path: '', component: DashrrhhComponent}
+      {path: 'dashboard', component: DashrrhhComponent},
+      {path: '**', redirectTo: 'dashboard'}
     ]
   }
 ]

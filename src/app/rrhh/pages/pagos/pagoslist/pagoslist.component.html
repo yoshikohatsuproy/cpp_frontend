@@ -1,54 +1,64 @@
-<div class="tabla">
-  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+<div class="container">
+  <h1>Listado de Pagos</h1>
+  <hr>
+  <div class="row">
+    <div class="col" >
+      <button style="float:right" routerLink="/pagoForm"
+              class="btn btn-primary">
+        <i class="fa fa-plus pd-1"></i>
+        Agregar
+      </button>
+    </div>
+  </div>
 
-    <!-- Position Column -->
-    <ng-container matColumnDef="codigo">
-      <th mat-header-cell *matHeaderCellDef> Código </th>
-      <td mat-cell *matCellDef="let element"> {{element.cod_pago}} </td>
-    </ng-container>
 
-    <!-- Name Column -->
-    <ng-container matColumnDef="codigo_sunat">
-      <th mat-header-cell *matHeaderCellDef> Código Sunat </th>
-      <td mat-cell *matCellDef="let element"> {{element.codigo_sunat}} </td>
-    </ng-container>
+  <table  class="table_list animated fadeIn faster animated fadeIn faster mt-3">
+    <thead class="text-center thead_list">
+      <tr>
+        <th scope="col">Id Pago</th>
+        <th scope="col">Código Sunat</th>
+        <th scope="col">Descripción</th>
+        <th scope="col">Tipo</th>
+        <th scope="col">Acciones</th>
+      </tr>
+    </thead>
+    <tbody  class="tbody_list text-center bg-light" >
+      <tr *ngFor="let pago of pagos; let i = index">
+        <td data-label="Id Pago">{{pago.cod_pago}} </td>
+        <td data-label="Código Sunat">{{pago.codigo_sunat}}  </td>
+        <td data-label="Descripción">{{pago.des_pago}}  </td>
+        <td data-label="Descripción">{{pago.cod_tipo_pago == 1 ? 'INGRESO' : pago.cod_tipo_pago == 2 ? 'DESCUENTO' : 'APORTES'  }}  </td>
+        <td data-label="Acciones">
+          <div style="margin:auto">
+            <button class="btn btn-info" style="margin-right: 10px;">
+              <i class="fa fa-pen"></i>
+            </button>
 
-    <!-- Weight Column -->
-    <ng-container matColumnDef="descripcion">
-      <th mat-header-cell *matHeaderCellDef> Descripción </th>
-      <td mat-cell *matCellDef="let element"> {{element.des_pago}} </td>
-    </ng-container>
-
-    <!-- Symbol Column -->
-    <ng-container matColumnDef="activo">
-      <th mat-header-cell *matHeaderCellDef> Activo </th>
-      <td  mat-cell *matCellDef="let element">    {{element.act_pago ? 'SI' : 'NO'}} </td>
-    </ng-container>
-
-    <!-- Symbol Column -->
-    <ng-container matColumnDef="acciones">
-      <th mat-header-cell *matHeaderCellDef>   </th>
-      <td mat-cell *matCellDef="let element" style="text-align: right;">
-        <a class="pointer" style="color: #1878b0;" matTooltip="Ver Pago">
-          <mat-icon> search</mat-icon>
-        </a>
-        <span class="spacer"></span>
-        <a class="pointer" style="color: #1f516f;" matTooltip="Editar Pago">
-          <mat-icon> edit</mat-icon>
-        </a>
-        <span class="spacer"></span>
-        <a class="pointer" style="color: #e15639;" matTooltip="Eliminar Pago">
-          <mat-icon> delete</mat-icon>
-        </a>
-      </td>
-
-    </ng-container>
-
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            <button   class="btn btn-danger">
+              <i class="fa fa-trash"></i>
+            </button>
+          </div>
+        </td>
+      </tr>
+    </tbody>
   </table>
-  <mat-paginator  [pageSizeOptions]="[5, 10, 20]"
-                  showFirstLastButtons
-                  aria-label="Select page of periodic elements">
-  </mat-paginator>
+
+  <div *ngIf="!(largo == 1)" class="paginador" >
+    <ul>
+      <li (click) = "primeraPagina()" >
+        <a>
+         <i class="fas fa-arrow-left"></i>
+        </a>
+      </li>
+      <li (click) = "cambiarPagina(i+1)" *ngFor="let pagina of paginas; let i = index">
+        <a>{{i + 1}}</a>
+      </li>
+      <li (click) = "ultimaPagina()" >
+        <a>
+          <i class="fas fa-arrow-right"></i>
+         </a>
+      </li>
+    </ul>
+  </div>
 </div>
+
